@@ -1,0 +1,11 @@
+Test\Main.class
+Ensa\Models\Filiere.class
+Ensa\Repository\IEleveDAO.class
+Ensa\actions\ActionController.class
+Ensa\Repository\EleveDAO.class
+Ensa\Services\EleveService.class
+Ensa\Repository\IFiliereDAO.class
+Ensa\Services\FiliereService.class
+Ensa\Repository\HibernateUtil.class
+Ensa\Models\Eleve.class
+Ensa\Repository\FiliereDAO.class
