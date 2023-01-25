@@ -30,7 +30,7 @@ public class Filiere implements Serializable{
     @Column(name = "Nom_Fil")
     private String Nom_Fil;
     
-    @OneToMany(mappedBy = "ref_fil" ,cascade = CascadeType.REMOVE ,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "ref_fil" ,cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 
     private Collection<Eleve> elevesCollection;
 

@@ -71,7 +71,7 @@ public class FiliereDAO implements IFiliereDAO{
         catch(Exception ex)
         {
             ex.printStackTrace();
-            System.out.println("Exception message dans AddArticle: " + ex.getMessage());
+            System.out.println("Exception message dans add filiere: " + ex.getMessage());
         }
     }
     
@@ -86,7 +86,7 @@ public class FiliereDAO implements IFiliereDAO{
         catch(Exception ex)
         {
             ex.printStackTrace();
-            System.out.println("Exception message dans UpdateArticle: " + ex.getMessage());
+            System.out.println("Exception message dans update: " + ex.getMessage());
         }
     }
     
@@ -97,21 +97,35 @@ public class FiliereDAO implements IFiliereDAO{
         try{
             Filiere filiere = getByCode_fil(code_fil);
             System.out.println(filiere);
-            
-            transaction = session.beginTransaction();
+            String code=filiere.getCode_Fil();
+            transaction=session.beginTransaction();
             session.remove(filiere);
             transaction.commit();
-            
+            session.close();
         }
         catch(Exception ex)
         {
             ex.printStackTrace();
-            System.out.println("Exception message dans Delete article: " + ex.getMessage());
+            System.out.println("Exception message dans Delete methode: " + ex.getMessage());
         }
     }
+    public int getCountEleves(String filiereId){
 
+
+        String hql = "SELECT COUNT(E) FROM Eleve E WHERE E.ref_fil = :filiereId";
+        transaction = session.beginTransaction();
+        Query query = session.createQuery(hql);
+
+        int count = ((Long) query.uniqueResult()).intValue();
+
+        transaction.commit();
+
+        return count;
+    }
     
+public void update(String code){
 
+}
   
     
 }

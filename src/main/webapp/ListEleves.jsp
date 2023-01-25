@@ -6,6 +6,8 @@
 <html>
 <head>
   <title>Eleves</title>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <style>
   .nav-link {
@@ -18,7 +20,8 @@
 
   /* Navbar link hover effect */
   .nav-link:hover {
-    background-color: #222;
+    background-color: antiquewhite;
+    font-weight: bold;
   }
 
   /* Navbar toggler icon styles */
@@ -55,11 +58,30 @@
   .btnajout{
     text-align: center;
   }
+
+  table th, table td {
+    font-weight: bold;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  table th {
+    background-color: #f5f5f5;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+
+  table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
 </style>
 </head>
-<body style="background-image: url(https://img.freepik.com/photos-gratuite/salle-classe-arriere-plan-flou-sans-jeune-etudiant-vue-floue-salle-classe-elementaire-aucun-enfant-enseignant-chaises-tables-campus-images-style-effet-vintage_1253-1375.jpg?w=1060&t=st=1674069595~exp=1674070195~hmac=0525a8223cad46b51e9e659d82ac88c775b189df309bf5fe62cb99fc7d093c29); background-size: cover;">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/Struts2AnnotationLogin/">Acceuil</a>
+<body style="background-image: url(https://img.freepik.com/photos-gratuite/salle-classe-arriere-plan-flou-sans-jeune-etudiant-vue-floue-salle-classe-elementaire-aucun-enfant-enseignant-chaises-tables-campus-images-style-effet-vintage_1253-1375.jpg?w=1060&t=st=1674069595~exp=1674070195~hmac=0525a8223cad46b51e9e659d82ac88c775b189df309bf5fe62cb99fc7d093c29); background-size: cover;"> <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" cssClass="nav-link" href="/Struts2AnnotationLogin/">Aceuill</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -78,12 +100,15 @@
   </div>
 </nav>
 <h1 style="text-align: center">Liste Eleves</h1>
-<a href="load" class="btn btn-primary" class="btnajout" style="text-align:center">Ajouter</a>
+
 <div class="container">
+  <a href="load" class="btn btn-primary btnajout" style="text-align:center">
+    <i class="fas fa-user-plus"></i> Ajouter
+  </a>
 
 
-  <table class="table">
-    <thead>
+  <table class="table table-hover">
+    <thead class="thead-light">
     <tr>
       <th>CNE</th>
       <th>Nom</th>
@@ -106,19 +131,19 @@
           <s:property value="ref_fil.Nom_Fil"/>
         </s:if>
           <s:else>
-            <s:property value="Indeterminer"/>
+           Indeterminer
           </s:else></td>
         <td>
           <s:url id="edtElv" action="EditerEleve">
             <s:param name="cne" value="%{cne}"></s:param>
           </s:url>
-          <s:a href="%{edtElv}" cssClass="btn btn-primary btn-sm" >Editer</s:a>
+          <s:a href="%{edtElv}" cssClass="btn btn-primary btn-sm" > <i class="fas fa-edit"></i> Editer</s:a>
 
           <s:url id="supprElv" action="SupprimerEleve">
             <s:param name="cne" value="%{cne}"></s:param>
           </s:url>
           <s:a href="%{supprElv}"
-               onclick="if (!(confirm('Etes vous sur de vouloir supprimer cet eleve ?'))) return false" cssClass="btn btn-danger btn-sm" >supprimer</s:a>
+               onclick="if (!(confirm('Etes vous sur de vouloir supprimer cet eleve ?'))) return false" cssClass="btn btn-danger btn-sm" ><i class="fas fa-trash"></i> supprimer</s:a>
         </td>
       </tr>
     </s:iterator>

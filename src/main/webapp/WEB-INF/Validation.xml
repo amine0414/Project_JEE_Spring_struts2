@@ -1,0 +1,48 @@
+
+    <validators>
+        <field name="eleve.cne">
+            <field-validator type="requiredstring">
+                <message>CNE is required.</message>
+            </field-validator>
+            <field-validator type="stringlength">
+                <param name="minLength">10</param>
+                <param name="maxLength">10</param>
+                <message>CNE must have 10 digits.</message>
+            </field-validator>
+        </field>
+        <field name="eleve.nom">
+            <field-validator type="requiredstring">
+                <message>Nom is required.</message>
+            </field-validator>
+            <field-validator type="stringlength">
+                <param name="minLength">3</param>
+                <param name="maxLength">50</param>
+                <message>Nom must have between 3 and 50 characters.</message>
+            </field-validator>
+        </field>
+        <field name="eleve.prenom">
+            <field-validator type="requiredstring">
+                <message>Prenom is required.</message>
+            </field-validator>
+            <field-validator type="stringlength">
+                <param name="minLength">3</param>
+                <param name="maxLength">50</param>
+                <message>Prenom must have between 3 and 50 characters.</message>
+            </field-validator>
+        </field>
+        <field name="eleve.moyenne">
+            <field-validator type="requiredstring">
+                <message>Moyenne is required.</message>
+            </field-validator>
+            <field-validator type="double">
+                <param name="minInclusive">0.0</param>
+                <param name="maxInclusive">20.0</param>
+                <message>Moyenne must be between 0.0 and 20.0.</message>
+            </field-validator>
+        </field>
+        <field name="eleve.ref_fil.Code_Fil">
+            <field-validator type="required">
+                <message>Filiere is required.</message>
+            </field-validator>
+        </field>
+    </validators>

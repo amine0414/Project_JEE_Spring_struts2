@@ -32,7 +32,7 @@ import org.springframework.stereotype.Controller;
  * @author amine
  */
 @Controller
-public class MainController extends ActionSupport {
+public class EleveAction extends ActionSupport {
     private Eleve eleve = new Eleve();
     private Filiere filiere = new Filiere();
     private List<Eleve> eleves ;
@@ -115,21 +115,27 @@ public class MainController extends ActionSupport {
 
   
 
-    
+    //page d'acceuil
      @Action(value = "/", results = { @Result(name = "success", location = "/Home.jsp") })
     public String Home() {
         eleves = ElvService.getAllelevesNonInscrit();
             return SUCCESS;
     
     }
+    //charger les filieres
     @Action(value = "load", results = { @Result(name = "success", location="/Eleves.jsp") })
     public String Load() {
         lesfilieres=FilService.getAllfilieres();
+        lesfilieres=FilService.getAllfilieres();
+        for (Filiere fil:lesfilieres)
+        {
+            ListeDesFilieres.add(fil.getCode_Fil());
+        }
 
         return SUCCESS;
     }
 
-       
+
     //Lister les eleves
     @Action(value="ListEleves",results={@Result(name=SUCCESS,location="/ListEleves.jsp")})
     public String ListDesEleves()
@@ -137,7 +143,7 @@ public class MainController extends ActionSupport {
         eleves = ElvService.getAlleleves();
             return SUCCESS;
     }
-
+    //Ajouter un eleve
     @Action(value="AjouterEleve",results={@Result(name=SUCCESS,type = "redirectAction", params = {"actionName","ListEleves"})})
     public String AjouterEleve()
     {
@@ -146,9 +152,10 @@ public class MainController extends ActionSupport {
         }
          ElvService.add_eleve(eleve);
 
+
          return SUCCESS;
     }
-    
+    //supprimer un eleve
     @Action(value="SupprimerEleve",results={@Result(name=SUCCESS,type = "redirectAction", params = {"actionName","ListEleves"})}) 
     public String DeleteEleve()
     {
@@ -158,7 +165,7 @@ public class MainController extends ActionSupport {
 
          return SUCCESS;
     }
-    
+    //Modifier un eleve
     @Action(value="EditerEleve",results={@Result(name=SUCCESS,location="/EditEleves.jsp")})  
     public String EditerEleve()
     {
@@ -173,7 +180,7 @@ public class MainController extends ActionSupport {
         
         return SUCCESS;
     }
-    
+    //mettre a jour un eleve
     @Action(value="UpdateEleve",results={@Result(name=SUCCESS,type = "redirectAction", params = {"actionName","ListEleves"})})
   
     public String UpdateEleve()
@@ -193,54 +200,8 @@ public class MainController extends ActionSupport {
         return SUCCESS;
     }
 
-    //Filiere
-    @Action(value="ListFilieres",results={@Result(name=SUCCESS,location="/ListFilieres.jsp")})
-    public String LesFilieres()
-    {	
-        lesfilieres = FilService.getAllfilieres();
-        return SUCCESS;
+    @Override
+    public void validate() {
+        super.validate();
     }
-
-    @Action(value="AjouterFiliere",results={@Result(name=SUCCESS,type = "redirectAction", params = {"actionName","ListFilieres"})})  
-    public String AjouterFiliere()
-    {
-         FilService.add_filiere(filiere);
-         this.lesfilieres  = FilService.getAllfilieres();
-         return SUCCESS;
-    }
-    
-    @Action(value="SupprimerFiliere",results={@Result(name=SUCCESS,type = "redirectAction", params = {"actionName","ListFilieres"})})  
-    public String SupprimerFiliere()
-    {
-
-        HttpServletRequest request ;
-        request= (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-         FilService.delete_filiere(request.getParameter("Code_Fil"));
-        
-         this.lesfilieres  = FilService.getAllfilieres();
-
-         return SUCCESS;
-    }
-    
-    @Action(value="EditerFiliere",results={@Result(name=SUCCESS,location="/EditFilieres.jsp")})  
-    public String EditerFiliere()
-    {
-
-        HttpServletRequest request ;
-        request= (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-        filiere=FilService.getByCode_fil(request.getParameter("Code_Fil"));
-        this.lesfilieres  = FilService.getAllfilieres();
-        return SUCCESS;
-    }
-    
-     @Action(value="UpdateFiliere",results={@Result(name=SUCCESS,type = "redirectAction", params = {"actionName","ListFilieres"})})  
-    public String UpdaterFiliere()
-    {
-         FilService.update_filiere(filiere);
-        this.lesfilieres  = FilService.getAllfilieres();
-
-         return SUCCESS;
-    }
-    
-
 }

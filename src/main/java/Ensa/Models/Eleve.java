@@ -5,13 +5,7 @@
 package Ensa.Models;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  *
@@ -35,7 +29,7 @@ public class Eleve implements Serializable{
     @Column(name = "moyenne")
     private double moyenne;
     
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "RefFil", referencedColumnName = "Code_fil",nullable=true)
     private Filiere ref_fil;
 
@@ -45,7 +39,7 @@ public class Eleve implements Serializable{
         this.prenom = prenom;
         this.moyenne = moyenne;
         this.ref_fil = ref_fil;
-        this.ref_fil=null;
+
     }
 
     public Eleve(String cne, String nom, String prenom, double moyenne) {

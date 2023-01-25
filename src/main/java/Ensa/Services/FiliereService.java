@@ -48,6 +48,9 @@ public class FiliereService {
     public void delete_filiere(String Code_Fil){
         FilDAO.delete_filiere(Code_Fil);
     }
+    public int getCount(String code_fil){
+        return FilDAO.getCountEleves(code_fil);
+    }
         
         
 

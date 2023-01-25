@@ -8,6 +8,8 @@
 <html>
 <head>
   <title>Eleves</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <style>
 
@@ -70,7 +72,8 @@
 
     /* Navbar link hover effect */
     .nav-link:hover {
-      background-color: #222;
+      background-color: antiquewhite;
+      font-weight: bold;
     }
 
     /* Navbar toggler icon styles */
@@ -104,49 +107,70 @@
     .footer a:hover {
       color: #007bff;
     }
+
+    table th, table td {
+      font-weight: bold;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th {
+      background-color: #f5f5f5;
+      text-align: left;
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
+
+    table td {
+      padding: 10px;
+      border: 1px solid #ddd;
+    }
   </style>
 </head>
 <body style="background-image: url(https://img.freepik.com/photos-gratuite/salle-classe-arriere-plan-flou-sans-jeune-etudiant-vue-floue-salle-classe-elementaire-aucun-enfant-enseignant-chaises-tables-campus-images-style-effet-vintage_1253-1375.jpg?w=1060&t=st=1674069595~exp=1674070195~hmac=0525a8223cad46b51e9e659d82ac88c775b189df309bf5fe62cb99fc7d093c29); background-size: cover;">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/Struts2AnnotationLogin/">Acceuil</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-          <s:url id="listeleves" action="ListEleves"></s:url> 
-        <li class="nav-item">
-          <s:a href="%{listeleves}" cssClass="nav-link">Gestion Eleves</s:a>
-        </li>
-         <s:url id="listefilieres" action="ListFilieres"></s:url> 
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" cssClass="nav-link" href="/Struts2AnnotationLogin/">Aceuill</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <s:url id="listeleves" action="ListEleves"></s:url>
+      <li class="nav-item">
+        <s:a href="%{listeleves}" cssClass="nav-link">Gestion Eleves</s:a>
+      </li>
+      <s:url id="listefilieres" action="ListFilieres"></s:url>
 
-        <li class="nav-item">
-          <s:a href="%{listefilieres}" cssClass="nav-link">Gestion Filieres</s:a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+      <li class="nav-item">
+        <s:a href="%{listefilieres}" cssClass="nav-link">Gestion Filieres</s:a>
+      </li>
+    </ul>
+  </div>
+</nav>
   <h1 style="text-align: center">Ajouter Eleve</h1>
   <div class="container">
       
 
 
-      <s:form action="AjouterEleve" class="form-container">
+      <s:form action="AjouterEleve" class="form-container" validate="WEB-INF/Validation.xml">
   <table class="table">
     <tbody>
       <s:textfield name="eleve.cne" label="CNE" cssClass="form-control" id="cne"/>
       <s:textfield name="eleve.nom" label="Nom" cssClass="form-control" id="nom"/>
       <s:textfield name="eleve.prenom" label="Prenom" cssClass="form-control" id="prenom"/>
       <s:textfield name="eleve.moyenne" label="Moyenne" cssClass="form-control" id="moyenne"/>
-      <label for="filiere">Filiere:</label>
+      <label for="filiere" style="font-weight: bold">Filiere:</label>
       <select name="eleve.ref_fil.Code_Fil" id="filiere">
         <option value="">Indeterminer</option>
         <s:iterator  value="lesfilieres" var="filiere">
           <option value="<s:property value='Code_Fil'/>"><s:property value='Nom_Fil'/></option>
         </s:iterator>
+
       </select>
       <td colspan="2">
-          <s:submit value="Ajouter" cssClass="btn btn-primary"/>
+          <s:submit value="Ajouter" cssClass="btn btn-primary" class="btn btn-primary"/>
         </td>
       </tr>
     </tbody>

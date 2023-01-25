@@ -19,7 +19,8 @@
 
     /* Navbar link hover effect */
     .nav-link:hover {
-        background-color: #222;
+        background-color: antiquewhite;
+        font-weight: bold;
     }
 
     /* Navbar toggler icon styles */
@@ -53,37 +54,61 @@
     .footer a:hover {
         color: #007bff;
     }
+
+    table th, table td {
+        font-weight: bold;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    table th {
+        background-color: #f5f5f5;
+        text-align: left;
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+
+    table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+    }
+    .form-control {
+        background-color: white;
+    }
+
 </style>
 </head>
 <body style="background-image: url(https://img.freepik.com/photos-gratuite/salle-classe-arriere-plan-flou-sans-jeune-etudiant-vue-floue-salle-classe-elementaire-aucun-enfant-enseignant-chaises-tables-campus-images-style-effet-vintage_1253-1375.jpg?w=1060&t=st=1674069595~exp=1674070195~hmac=0525a8223cad46b51e9e659d82ac88c775b189df309bf5fe62cb99fc7d093c29); background-size: cover;">
-   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/Struts2AnnotationLogin/">Acceuil</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" cssClass="nav-link" href="/Struts2AnnotationLogin/">Aceuill</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-          <s:url id="listeleves" action="ListEleves"></s:url> 
-        <li class="nav-item">
-          <s:a href="%{listeleves}" cssClass="nav-link">Gestion Eleves</s:a>
-        </li>
-         <s:url id="listefilieres" action="ListFilieres"></s:url> 
+        <ul class="navbar-nav">
+            <s:url id="listeleves" action="ListEleves"></s:url>
+            <li class="nav-item">
+                <s:a href="%{listeleves}" cssClass="nav-link">Gestion Eleves</s:a>
+            </li>
+            <s:url id="listefilieres" action="ListFilieres"></s:url>
 
-        <li class="nav-item">
-          <s:a href="%{listefilieres}" cssClass="nav-link">Gestion Filieres</s:a>
-        </li>
-      </ul>
+            <li class="nav-item">
+                <s:a href="%{listefilieres}" cssClass="nav-link">Gestion Filieres</s:a>
+            </li>
+        </ul>
     </div>
-  </nav>
+</nav>
         <div class="container">
       
-              <h1>Update Filiere</h1>
+              <h1 style="text-align: center">Update Filiere</h1>
 
       <s:form action="UpdateFiliere">
   <table class="table">
     <tbody>
-      <s:textfield name="filiere.Code_Fil" label="Code" cssClass="form-control" id="code"/>
-      <s:textfield name="filiere.Nom_Fil" label="nom" cssClass="form-control" id="nom_fil"/>
+      <s:textfield readonly="true" name="filiere.Code_Fil" style="background-color: white;" label="Code" cssClass="form-control" id="code"/>
+      <s:textfield  name="filiere.Nom_Fil" style="background-color: white;" label="nom" cssClass="form-control" id="nom_fil"/>
    
       <tr>
         <td colspan="2">
